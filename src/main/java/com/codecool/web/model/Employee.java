@@ -5,13 +5,11 @@ public class Employee extends Person {
     private String title;
     private int numOfRepresentedCustomers;
 
-    public Employee(int id, String firstName, String lastName, String address,
-                    String city, String country, String postalCode,
-                    String email, String title, int numOfRepresentedCustomers) {
-        super(id, firstName, lastName, address, city, country, postalCode, email);
+    public Employee(int id, String firstName, String lastName, String email,
+                    String fullAddress, String title, int numOfRepresentedCustomers) {
+        super(id, firstName, lastName, email, fullAddress);
         this.title = title;
         this.numOfRepresentedCustomers = numOfRepresentedCustomers;
-
     }
 
     public String getTitle() {
@@ -21,5 +19,4 @@ public class Employee extends Person {
     public int getNumOfRepresentedCustomers() {
         return numOfRepresentedCustomers;
     }
-
 }
