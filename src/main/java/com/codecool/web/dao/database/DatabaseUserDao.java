@@ -30,27 +30,6 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         }
     }
 
-//    @Override
-//    public User findByEmail(String email) throws SQLException {
-//        if (email == null || "".equals(email)) {
-//            throw new IllegalArgumentException("Email cannot be null or empty");
-//        }
-//        String sql = "SELECT customerid, email from customer where email = ?";
-//        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-//            statement.setString(1, email);
-//
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//
-//
-//                if (resultSet.next()) {
-//                    return fetchuser(resultSet);
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
-
 
     @Override
     public User findByEmail(String email) throws SQLException {
@@ -77,13 +56,6 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
         }
         return null;
     }
-
-//    private User fetchuser(ResultSet resultSet) throws SQLException {
-//        int id = resultSet.getInt("customerid");
-//        String email = resultSet.getString("email");
-//        return new User(id, email);
-//    }
-
 
     private User fetchuser(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("customerid");

@@ -116,6 +116,9 @@ function onLoad() {
     const listCustButtonEl = document.getElementById('listcust-button');
     listCustButtonEl.addEventListener('click', onListCustButtonClicked);
 
+    const listEmplButtonEl = document.getElementById('listempl-button');
+    listEmplButtonEl.addEventListener('click', onListEmplButtonClicked);
+
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }

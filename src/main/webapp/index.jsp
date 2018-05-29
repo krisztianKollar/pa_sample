@@ -9,11 +9,13 @@
         <c:url value="/index.js" var="indexScriptUrl"/>
         <c:url value="/login.js" var="loginScriptUrl"/>
         <c:url value="/customers.js" var="customersScriptUrl"/>
+        <c:url value="/employees.js" var="employeesScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
         <c:url value="/back-to-profile.js" var="backToProfileScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${customersScriptUrl}"></script>
+        <script src="${employeesScriptUrl}"></script>
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
@@ -40,12 +42,17 @@
 </div>
 
 <div id="customers" class="hidden">
-    <h1>List of the Customers</h1>
+    <h2>List of the Customers</h2>
+    </div>
+
+<div id="employees" class="hidden">
+    <h2>List of the Employees</h2>
     </div>
 
 <div id="logout-content" class="hidden content">
     <button id="logout-button">Logout</button>
     <button id="listcust-button">List Customers</button>
+    <button id="listempl-button">List Employees</button>
 </div>
 </body>
 </html>
