@@ -13,5 +13,5 @@ public interface AlbumDao {
 
     void addAlbum() throws SQLException;
 
-    void addAlbumToArtist() throws SQLException;
+    void addAlbumToArtist(String title, int artistId) throws SQLException;
 }

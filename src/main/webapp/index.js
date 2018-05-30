@@ -119,9 +119,20 @@ function onLoad() {
     const listEmplButtonEl = document.getElementById('listempl-button');
     listEmplButtonEl.addEventListener('click', onListEmplButtonClicked);
 
+    const listArtistButtonEl = document.getElementById('listartist-button');
+    listArtistButtonEl.addEventListener('click', onListArtistButtonClicked);
+
+    const addAlbumToArtistButtonEl = document.getElementById('addalbumtoartist-button');
+    addAlbumToArtistButtonEl.addEventListener('click', showAlbToArt);
+
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }
+}
+
+function showAlbToArt() {
+    showContents(["addalbumtoartist"]);
+    document.getElementById("submit").addEventListener('click', onAddAlbumToArtistButtonElClicked);
 }
 
 document.addEventListener('DOMContentLoaded', onLoad);

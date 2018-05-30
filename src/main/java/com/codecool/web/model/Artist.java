@@ -7,9 +7,9 @@ public class Artist extends AbstractModel{
     private String name;
     private int totalNumOfAlbums;
     private int totalNumOfTracks;
-    private int totalPrice;
+    private float totalPrice;
 
-    public Artist(int id, String name, int totalNumOfAlbums, int totalNumOfTracks, int totalPrice) {
+    public Artist(int id, String name, int totalNumOfAlbums, int totalNumOfTracks, float totalPrice) {
         super(id);
         this.name = name;
         this.totalNumOfAlbums = totalNumOfAlbums;
@@ -34,7 +34,7 @@ public class Artist extends AbstractModel{
         return totalNumOfTracks;
     }
 
-    public int getTotalPrice() {
+    public float getTotalPrice() {
         return totalPrice;
     }
 

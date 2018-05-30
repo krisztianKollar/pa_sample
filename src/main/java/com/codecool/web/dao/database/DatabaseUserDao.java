@@ -19,7 +19,8 @@ public final class DatabaseUserDao extends AbstractDao implements UserDao {
             "inner join employee as e on c.supportrepid = e.employeeid " +
             "inner join invoice as i on i.customerid = c.customerid " +
             "group by c.customerid, c.firstname, c.lastname, c.company, c.address, c.city, c.country, " +
-            "c.postalcode, c.company, e.email, c.email;";
+            "c.postalcode, c.company, e.email, c.email " +
+            "order by firstname, lastname;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             List<User> users = new ArrayList<>();

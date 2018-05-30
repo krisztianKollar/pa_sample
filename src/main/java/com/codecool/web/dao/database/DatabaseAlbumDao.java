@@ -6,10 +6,7 @@ import com.codecool.web.model.Album;
 import com.codecool.web.model.Artist;
 import com.codecool.web.model.Track;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,9 +48,18 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
     }
 
     @Override
-    public void addAlbumToArtist() throws SQLException {
-
+    public void addAlbumToArtist(String title, int artistId) throws SQLException {
+        String sql = "INSERT INTO album (title, artistid) VALUES (? , ?);";
+        System.out.println(artistId);
+        System.out.println(title);
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, title);
+            ps.setInt(2, artistId);
+            executeInsert(ps);
+        }
     }
+
+
 
 
 

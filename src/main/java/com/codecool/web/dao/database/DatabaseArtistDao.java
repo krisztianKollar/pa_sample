@@ -6,10 +6,7 @@ import com.codecool.web.model.Album;
 import com.codecool.web.model.Artist;
 import com.codecool.web.model.Artist;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +27,8 @@ public class DatabaseArtistDao extends AbstractDao implements ArtistDao {
             "from artist as ar " +
             "join album as al on al.artistid = ar.artistid " +
             "join track as t on al.albumid = t.albumid " +
-            "group by ar.artistid, ar.name";
+            "group by ar.artistid, ar.name " +
+            "order by ar.name";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             List<Artist> artists = new ArrayList<>();
@@ -51,13 +49,27 @@ public class DatabaseArtistDao extends AbstractDao implements ArtistDao {
 
     }
 
+    @Override
+    public int getArtistIdByName(String name) throws SQLException {
+        String sql = "SELECT artistid from artist where name = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ResultSet resultSet = ps.executeQuery();
 
-    private Artist fetchartist (ResultSet resultSet) throws SQLException {
+            while (resultSet.next()) {
+                return resultSet.getInt("artistid");
+            }
+            return -1;
+        }
+    }
+
+
+    private Artist fetchartist(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("artistid");
         String name = resultSet.getString("name");
         int totalNumOfAlbums = resultSet.getInt("number_of_albums");
         int totalNumOfTracks = resultSet.getInt("number_of_tracks");
-        int totalPrice = resultSet.getInt("totalprice");
+        float totalPrice = resultSet.getFloat("totalprice");
         return new Artist(id, name, totalNumOfAlbums, totalNumOfTracks, totalPrice);
     }
 }

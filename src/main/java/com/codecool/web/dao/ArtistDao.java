@@ -15,4 +15,6 @@ public interface ArtistDao {
 
     void addArtist() throws SQLException;
 
+    int getArtistIdByName(String name) throws SQLException;
+
 }

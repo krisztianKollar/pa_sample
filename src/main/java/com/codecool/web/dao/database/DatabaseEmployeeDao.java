@@ -22,7 +22,8 @@ public class DatabaseEmployeeDao extends AbstractDao implements EmployeeDao {
         String sql = "SELECT e.employeeid, e.firstname, e.lastname, e.title, e.address, e.city, e.country, " +
             "e.postalcode, e.email, count(c.supportrepid) as numofrepresentedcustomers FROM employee as e " +
             "left join customer as c on c.supportrepid = e.employeeid " +
-            "group by e.employeeid, e.firstname, e.lastname, e.title, e.address, e.city, e.country, e.postalcode, e.email";
+            "group by e.employeeid, e.firstname, e.lastname, e.title, e.address, e.city, e.country, e.postalcode, e.email " +
+            "order by e.firstname, e.lastname";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             List<Employee> employees = new ArrayList<>();
