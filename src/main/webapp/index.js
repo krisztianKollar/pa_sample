@@ -62,7 +62,7 @@ function onNetworkError(response) {
     document.body.remove();
     const bodyEl = document.createElement('body');
     document.appendChild(bodyEl);
-    newError(bodyEl, 'Network error, please try reloaing the page');
+    newError(bodyEl, 'Network error, please try reloading the page');
 }
 
 function onOtherResponse(targetEl, xhr) {
@@ -121,6 +121,9 @@ function onLoad() {
 
     const listArtistButtonEl = document.getElementById('listartist-button');
     listArtistButtonEl.addEventListener('click', onListArtistButtonClicked);
+
+    const listAlbumButtonEl = document.getElementById('listalbum-button');
+    listAlbumButtonEl.addEventListener('click', onListAlbumButtonClicked);
 
     const addAlbumToArtistButtonEl = document.getElementById('addalbumtoartist-button');
     addAlbumToArtistButtonEl.addEventListener('click', showAlbToArt);

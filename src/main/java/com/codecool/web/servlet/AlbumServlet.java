@@ -5,6 +5,7 @@ import com.codecool.web.dao.ArtistDao;
 import com.codecool.web.dao.database.DatabaseAlbumDao;
 import com.codecool.web.dao.database.DatabaseArtistDao;
 import com.codecool.web.dto.MessageDto;
+import com.codecool.web.model.Album;
 import com.codecool.web.model.Artist;
 import com.codecool.web.service.simple.SimpleAlbumService;
 
@@ -34,4 +35,21 @@ public class AlbumServlet extends AbstractServlet {
             handleSqlError(resp, e);
         }
     }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try (Connection c = getConnection(req.getServletContext())) {
+            AlbumDao albumDao = new DatabaseAlbumDao(c);
+            ArtistDao artistDao = new DatabaseArtistDao(c);
+            SimpleAlbumService service = new SimpleAlbumService(albumDao, artistDao);
+
+            List<Album> albums = service.getAlbums();
+
+            resp.setContentType("application/json");
+            sendMessage(resp, HttpServletResponse.SC_OK, albums);
+
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
+        }
+    }
 }
+

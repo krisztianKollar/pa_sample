@@ -57,6 +57,10 @@
     <h2>List of the Available Artists</h2>
     </div>
 
+<div id="albums" class="hidden">
+    <h2>List of the Available Albums</h2>
+    </div>
+
 <div id="addalbumtoartist" class="hidden content">
     <h2>You can add new album an existing Artists</h2>
     <input type= "text" id="album" placeholder="Please type the title of the album"><br><br>
@@ -71,6 +75,7 @@
     <button id="listcust-button">List Customers</button>
     <button id="listempl-button">List Employees</button>
     <button id="listartist-button">List Artists</button>
+    <button id="listalbum-button">List Albums</button>
     <button id="addalbumtoartist-button">Add Album to Artist</button>
 </div>
 </body>

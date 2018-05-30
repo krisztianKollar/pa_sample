@@ -22,11 +22,12 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
     public List<Album> findAllAlbum() throws SQLException {
         String sql = "SELECT al.albumid, ar.name, al.title, " +
             "count(t.trackid) as number_of_tracks, " +
-            "sum(t.unitprice) " +
+            "sum(t.unitprice) as totalprice " +
             "from album as al " +
             "join artist as ar on al.artistid = ar.artistid " +
             "join track as t on al.albumid = t.albumid " +
-            "group by al.albumid, ar.name, al.title";
+            "group by al.albumid, ar.name, al.title " +
+            "order by ar.name, al.title";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             List<Album> albums = new ArrayList<>();
@@ -67,9 +68,8 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
         int id = resultSet.getInt("albumid");
         String artistName = resultSet.getString("name");
         String title = resultSet.getString("title");
-        int artistId = resultSet.getInt("artistid");
         int numOfTracks = resultSet.getInt("number_of_tracks");
         float totalPrice = resultSet.getFloat("totalprice");
-        return new Album(id, artistName, title, artistId, numOfTracks, totalPrice);
+        return new Album(id, artistName, title, numOfTracks, totalPrice);
     }
 }

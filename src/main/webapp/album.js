@@ -17,3 +17,43 @@ function onAlbumToArtistResponse() {
 }
 
 
+function onListAlbumButtonClicked() {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onAlbumResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/albumservlet');
+    xhr.send();
+}
+
+function onAlbumResponse() {
+    const responseText = JSON.parse(this.responseText);
+    const albumsDiv = document.getElementById("albums");
+    const albumTable = document.createElement("table");
+    for (let i = 0; i < responseText.length; i++) {
+        const tr = document.createElement("tr");
+        const tdArtistName = document.createElement("td");
+        const tdTitle = document.createElement("td");
+        const tdTotalNumTracks = document.createElement("td");
+        const tdTotalPrice = document.createElement("td");
+
+        tdArtistName.innerHTML = responseText[i].artistName;
+        tdTitle.innerHTML = responseText[i].title;
+        tdTotalNumTracks.innerHTML = responseText[i].numOfTracks;
+        tdTotalPrice.innerHTML = responseText[i].totalPrice;
+
+        tr.appendChild(tdArtistName);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdTotalNumTracks);
+        tr.appendChild(tdTotalPrice);
+
+        albumTable.appendChild(tr);
+        }
+
+        albumsDiv.appendChild(albumTable);
+
+        albumsDiv.classList.remove("hidden");
+}
+
+
+
+
