@@ -2,7 +2,7 @@ package com.codecool.web.model;
 
 public abstract class Person extends AbstractModel {
 
-    protected String firstName;
+    private String firstName;
     private String lastName;
     private String email;
     private String fullAddress;

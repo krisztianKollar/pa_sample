@@ -2,15 +2,9 @@ package com.codecool.web.dao.database;
 
 import com.codecool.web.dao.EmployeeDao;
 import com.codecool.web.dao.TrackDao;
-import com.codecool.web.model.Album;
-import com.codecool.web.model.Artist;
-import com.codecool.web.model.Employee;
-import com.codecool.web.model.Track;
+import com.codecool.web.model.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +78,7 @@ public class DatabaseTrackDao extends AbstractDao implements TrackDao {
 
     }
 
-    private Track fetchtrack (ResultSet resultSet) throws SQLException {
+    private Track fetchtrack(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("trackid");
         String name = resultSet.getString("name");
         int albumId = resultSet.getInt("albumid");

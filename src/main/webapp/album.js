@@ -11,7 +11,7 @@ function onAddAlbumToArtistButtonElClicked() {
 
 function onAlbumToArtistResponse() {
        const asd = JSON.parse(this.responseText);
-       console.log(asd);
+    alert("You have added the album.")
     clearMessages();
     showContents(['profile-content', 'logout-content']);
 }

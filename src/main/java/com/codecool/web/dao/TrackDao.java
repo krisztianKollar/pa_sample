@@ -28,4 +28,5 @@ public interface TrackDao {
     void addTrack() throws SQLException;
 
     void addTrackToAlbum() throws SQLException;
+
 }
