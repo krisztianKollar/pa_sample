@@ -125,6 +125,15 @@ function onLoad() {
     const listAlbumButtonEl = document.getElementById('listalbum-button');
     listAlbumButtonEl.addEventListener('click', onListAlbumButtonClicked);
 
+    const listPurchAlbumButtonEl = document.getElementById('listpurchalbum-button');
+    listPurchAlbumButtonEl.addEventListener('click', onListPurchAlbumButtonClicked);
+
+    const listPurchaseButtonEl = document.getElementById('listpurchase-button');
+    listPurchaseButtonEl.addEventListener('click', onListPurchaseButtonClicked);
+
+    const detailedPurchaseButtonEl = document.getElementById('listpurchase2-button');
+    detailedPurchaseButtonEl.addEventListener('click', onDetailedPurchaseButtonClicked);
+
     const addAlbumToArtistButtonEl = document.getElementById('addalbumtoartist-button');
     addAlbumToArtistButtonEl.addEventListener('click', showAlbToArt);
 

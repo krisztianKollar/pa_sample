@@ -39,9 +39,29 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
     }
 
     @Override
-    public List<Album> findAllPurchasedAlbum() throws SQLException {
-        return null;
+    public List<Album> findAllPurchasedAlbum(int customerId) throws SQLException {
+        String sql = "SELECT ar.name as artist, al.albumid, al.title as album, (select sum(unitprice) " +
+            "from track where albumid = al.albumid) as totalprice " +
+            "from album as al " +
+            "join artist as ar on al.artistid = ar.artistid " +
+            "join track as t on al.albumid = t.albumid " +
+            "join invoiceline as il on t.trackid = il.trackid " +
+            "join invoice as i on i.invoiceid = il.invoiceid " +
+            "where i.customerid = ? " +
+            "group by al.albumid, ar.name, al.title " +
+            "order by ar.name, al.title;";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, customerId);
+            ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
+            List<Album> albums = new ArrayList<>();
+            while (rs.next()) {
+                albums.add(fetchpurchalbum(rs));
+            }
+            return albums;
+        }
     }
+
 
     @Override
     public void addAlbum() throws SQLException {
@@ -61,9 +81,6 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
     }
 
 
-
-
-
     private Album fetchalbum(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("albumid");
         String artistName = resultSet.getString("name");
@@ -71,5 +88,13 @@ public class DatabaseAlbumDao extends AbstractDao implements AlbumDao {
         int numOfTracks = resultSet.getInt("number_of_tracks");
         float totalPrice = resultSet.getFloat("totalprice");
         return new Album(id, artistName, title, numOfTracks, totalPrice);
+    }
+
+    private Album fetchpurchalbum(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("albumid");
+        String artistName = resultSet.getString("artist");
+        String title = resultSet.getString("album");
+        float totalPrice = resultSet.getFloat("totalprice");
+        return new Album(id, artistName, title, totalPrice);
     }
 }

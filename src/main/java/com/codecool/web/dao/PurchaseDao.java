@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PurchaseDao {
 
-    List<Purchase> purchaseHistoryByUser(String customerId) throws SQLException;
+    List<Purchase> purchaseHistoryByUser(int customerId) throws SQLException;
 
-    List<Purchase> detailedPurchaseHistoryByUser(String customerId) throws SQLException;
+    List<Purchase> detailedPurchaseHistoryByUser(int customerId) throws SQLException;
 }

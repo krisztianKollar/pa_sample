@@ -25,6 +25,13 @@ public class Album extends AbstractModel{
         this.totalPrice = totalPrice;
     }
 
+    public Album(int id, String artistName, String title, float totalPrice) {
+        super(id);
+        this.artistName = artistName;
+        this.title = title;
+        this.totalPrice = totalPrice;
+    }
+
     public String getArtistName() {
         return artistName;
     }

@@ -18,7 +18,7 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
     }
 
     @Override
-    public List<Purchase> purchaseHistoryByUser(String customerId) throws SQLException {
+    public List<Purchase> purchaseHistoryByUser(int customerId) throws SQLException {
         String sql = "select i.invoiceid, count(il.trackid ) as number_of_tracks, " +
             "sum(il.unitprice * il.quantity) as total_price from invoice as i " +
             "join invoiceline as il on i.invoiceid = il. invoiceid " +
@@ -26,7 +26,7 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
             "group by i.invoiceid " +
             "order by i.invoiceid;";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, customerId);
+            ps.setInt(1, customerId);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             List<Purchase> purchases = new ArrayList<>();
@@ -38,7 +38,7 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
     }
 
     @Override
-    public List<Purchase> detailedPurchaseHistoryByUser(String customerId) throws SQLException {
+    public List<Purchase> detailedPurchaseHistoryByUser(int customerId) throws SQLException {
         String sql = "select il.invoiceid, ar.name as artist, al.title, t.name as track_title, " +
             "t.unitprice, g.name as genre from invoiceline as il " +
             "join invoice as i on i.invoiceid = il.invoiceid " +
@@ -46,9 +46,10 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
             "join genre as g on g.genreid = t.genreid " +
             "join album as al on al.albumid = t.albumid " +
             "join artist as ar on ar.artistid = al.artistid " +
-            "where customerid = ?;";
+            "where customerid = ? " +
+            "order by i.invoiceid;";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, customerId);
+            ps.setInt(1, customerId);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             List<Purchase> purchases = new ArrayList<>();
@@ -62,7 +63,7 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
     private Purchase fetchpurchase(ResultSet resultSet) throws SQLException {
         int invoiceId = resultSet.getInt("invoiceid");
         int numberOfTracks = resultSet.getInt("number_of_tracks");
-        int totalPrice = resultSet.getInt("total_price");
+        float totalPrice = resultSet.getFloat("total_price");
         return new Purchase(invoiceId, numberOfTracks, totalPrice);
     }
 

@@ -1,4 +1,5 @@
 function onListArtistButtonClicked() {
+    showContents(["logout-content", "profile-content", "artists"])
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onArtistResponse);
     xhr.addEventListener('error', onNetworkError);

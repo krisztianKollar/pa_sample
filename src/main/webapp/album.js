@@ -50,10 +50,43 @@ function onAlbumResponse() {
         }
 
         albumsDiv.appendChild(albumTable);
-
+//showContents("logout-content", "albums");
         albumsDiv.classList.remove("hidden");
 }
 
+function onListPurchAlbumButtonClicked() {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onPurchAlbumResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/purchalbumservlet');
+    xhr.send();
+}
+
+function onPurchAlbumResponse() {
+    const responseText = JSON.parse(this.responseText);
+    const purchAlbumDiv = document.getElementById("purchalbums");
+    const purchAlbumTable = document.createElement("table");
+    for (let i = 0; i < responseText.length; i++) {
+        const tr = document.createElement("tr");
+        const tdArtistName = document.createElement("td");
+        const tdTitle = document.createElement("td");
+        const tdTotalPrice = document.createElement("td");
+
+        tdArtistName.innerHTML = responseText[i].artistName;
+        tdTitle.innerHTML = responseText[i].title;
+        tdTotalPrice.innerHTML = responseText[i].totalPrice;
+
+        tr.appendChild(tdArtistName);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdTotalPrice);
+
+        purchAlbumTable.appendChild(tr);
+    }
+
+        purchAlbumDiv.appendChild(purchAlbumTable);
+
+        purchAlbumDiv.classList.remove("hidden");
+}
 
 
 

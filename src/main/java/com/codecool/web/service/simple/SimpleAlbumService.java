@@ -28,4 +28,8 @@ public final class SimpleAlbumService {
         return albumDao.findAllAlbum();
     }
 
+    public List<Album> getPurchasedAlbums(int customerId) throws SQLException {
+        return albumDao.findAllPurchasedAlbum(customerId);
+    }
+
 }

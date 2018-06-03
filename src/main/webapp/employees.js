@@ -1,4 +1,5 @@
 function onListEmplButtonClicked() {
+    showContents(["logout-content", "profile-content", "employees"])
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onEmployeesResponse);
     xhr.addEventListener('error', onNetworkError);
@@ -10,6 +11,18 @@ function onEmployeesResponse() {
     const responseText = JSON.parse(this.responseText);
     const emplDiv = document.getElementById("employees");
     const emplTable = document.createElement("table");
+
+    const header = emplTable.createTHead();
+    const row = header.insertRow(0);
+    const headerList = ["Firstname", "Lastname", "Email", "Address", "Title", "Number of Represented Customers"]
+    for (let h = 0; h < headerList.length; h++) {
+        let cell = row.insertCell(h);
+        cell.innerHTML = headerList[h];
+        cell.style.fontWeight = "900";
+        cell.style.backgroundColor = "green";
+        cell.style.color = "white";
+    }
+
     for (let i = 0; i < responseText.length; i++) {
         const tr = document.createElement("tr");
         const tdFirstName = document.createElement("td");

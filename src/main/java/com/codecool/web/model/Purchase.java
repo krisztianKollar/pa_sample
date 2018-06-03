@@ -4,14 +4,14 @@ public class Purchase {
 
     private int invoiceId;
     private int numberOfTracks;
-    private int totalPrice;
+    private float totalPrice;
     private String artistName;
     private String albumTitle;
     private String trackTitle;
     private int unitPrice;
     private String genre;
 
-    public Purchase(int invoiceId, int numberOfTracks, int totalPrice) {
+    public Purchase(int invoiceId, int numberOfTracks, float totalPrice) {
         this.invoiceId = invoiceId;
         this.numberOfTracks = numberOfTracks;
         this.totalPrice = totalPrice;
@@ -34,7 +34,7 @@ public class Purchase {
         return numberOfTracks;
     }
 
-    public int getTotalPrice() {
+    public float getTotalPrice() {
         return totalPrice;
     }
 

@@ -9,7 +9,7 @@ public interface AlbumDao {
 
     List<Album> findAllAlbum() throws SQLException;
 
-    List<Album> findAllPurchasedAlbum() throws SQLException;
+    List<Album> findAllPurchasedAlbum(int customerId) throws SQLException;
 
     void addAlbum() throws SQLException;
 
