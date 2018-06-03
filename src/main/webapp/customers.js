@@ -1,4 +1,7 @@
 function onListCustButtonClicked() {
+    showContents(["logout-content", "profile-content", "customers"])
+    const custDiv = document.getElementById("customers");
+    removeAllChildren(custDiv);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onCustResponse);
     xhr.addEventListener('error', onNetworkError);
@@ -10,6 +13,18 @@ function onCustResponse() {
     const responseText = JSON.parse(this.responseText);
     const custDiv = document.getElementById("customers");
     const custTable = document.createElement("table");
+
+    const header = custTable.createTHead();
+    const row = header.insertRow(0);
+    const headerList = ["Firstname", "Lastname", "Company", "Address", "Sales Representary Contact", "Number of Purchases"]
+    for (let h = 0; h < headerList.length; h++) {
+        let cell = row.insertCell(h);
+        cell.innerHTML = headerList[h];
+        cell.style.fontWeight = "900";
+        cell.style.backgroundColor = "green";
+        cell.style.color = "white";
+    }
+
     for (let i = 0; i < responseText.length; i++) {
         const tr = document.createElement("tr");
         const tdFirstName = document.createElement("td");

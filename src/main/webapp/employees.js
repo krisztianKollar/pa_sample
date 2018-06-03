@@ -1,5 +1,7 @@
 function onListEmplButtonClicked() {
     showContents(["logout-content", "profile-content", "employees"])
+    const emplDiv = document.getElementById("employees");
+    removeAllChildren(emplDiv);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onEmployeesResponse);
     xhr.addEventListener('error', onNetworkError);

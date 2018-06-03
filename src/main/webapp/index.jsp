@@ -49,6 +49,7 @@
         <button id="login-button">Login</button>
     </form>
 </div>
+
 <div id="profile-content" class="hidden content">
     <h3>Welcome, <span id="user-firstname"></span>!</h3>
     <p>Email: <span id="user-email"></span></p>
@@ -59,41 +60,40 @@
     <button onclick="onBackToProfileClicked();">Back to profile</button>
 </div>
 
-<div id="customers" class="hidden">
+<div id="customers" class="hidden content">
     <h2>List of the Customers</h2>
-    </div>
+</div>
 
-<div id="employees" class="hidden">
+<div id="employees" class="hidden content">
     <h2>List of the Employees</h2>
-    </div>
+</div>
 
-<div id="artists" class="hidden">
+<div id="artists" class="hidden content">
     <h2>List of the Available Artists</h2>
-    </div>
+</div>
 
-<div id="albums" class="hidden">
+<div id="albums" class="hidden content">
     <h2>List of the Available Albums</h2>
-    </div>
+</div>
 
-<div id="purchalbums" class="hidden">
+<div id="purchalbums" class="hidden content">
     <h2>Your Purchased Albums</h2>
-    </div>
+</div>
 
-<div id="purchase" class="hidden">
+<div id="purchase" class="hidden content">
     <h2>Your Purchase History</h2>
-    </div>
+</div>
 
-<div id="purchase2" class="hidden">
+<div id="purchase2" class="hidden content">
     <h2>Your Detailed Purchase History</h2>
-    </div>
+</div>
 
 <div id="addalbumtoartist" class="hidden content">
     <h2>You can add new album an existing Artists</h2>
-    <input type= "text" id="album" placeholder="Please type the title of the album"><br><br>
-    <input type= "text" id="artist" placeholder="Please type the name of the artist"><br><br>
-    <button id="submit">Submit</button>
-
-    </div>
+    <input type= "text" id="album" placeholder="Type title of album"><br><br>
+    <input type= "text" id="artist" placeholder="Type name of artist"><br><br>
+    <button id="submit" class="button">Submit</button>
+</div>
 
 
 </body>

@@ -143,7 +143,7 @@ function onLoad() {
 }
 
 function showAlbToArt() {
-    showContents(["addalbumtoartist"]);
+    showContents(["logout-content", "profile-content", "addalbumtoartist"]);
     document.getElementById("submit").addEventListener('click', onAddAlbumToArtistButtonElClicked);
 }
 

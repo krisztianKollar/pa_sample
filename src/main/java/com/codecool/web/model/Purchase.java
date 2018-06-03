@@ -8,7 +8,7 @@ public class Purchase {
     private String artistName;
     private String albumTitle;
     private String trackTitle;
-    private int unitPrice;
+    private float unitPrice;
     private String genre;
 
     public Purchase(int invoiceId, int numberOfTracks, float totalPrice) {
@@ -17,7 +17,7 @@ public class Purchase {
         this.totalPrice = totalPrice;
     }
 
-    public Purchase(int invoiceId, String artistName, String albumTitle, String trackTitle, int unitPrice, String genre) {
+    public Purchase(int invoiceId, String artistName, String albumTitle, String trackTitle, float unitPrice, String genre) {
         this.invoiceId = invoiceId;
         this.artistName = artistName;
         this.albumTitle = albumTitle;
@@ -50,7 +50,7 @@ public class Purchase {
         return trackTitle;
     }
 
-    public int getUnitPrice() {
+    public float getUnitPrice() {
         return unitPrice;
     }
 

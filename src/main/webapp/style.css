@@ -31,3 +31,7 @@ padding: 5px;
     margin: 4px 2px;
     cursor: pointer;
 }
+
+button:focus{
+    background:olive;
+}

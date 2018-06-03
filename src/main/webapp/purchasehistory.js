@@ -1,4 +1,7 @@
 function onListPurchaseButtonClicked() {
+    showContents(["logout-content", "profile-content", "purchase"])
+    const purchaseDiv = document.getElementById("purchase");
+    removeAllChildren(purchaseDiv);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onPurchaseResponse);
     xhr.addEventListener('error', onNetworkError);
@@ -10,6 +13,18 @@ function onPurchaseResponse() {
     const responseText = JSON.parse(this.responseText);
     const purchaseDiv = document.getElementById("purchase");
     const purchaseTable = document.createElement("table");
+
+    const header = purchaseTable.createTHead();
+    const row = header.insertRow(0);
+    const headerList = ["Invoice ID", "Number of Tracks", "Total Price"]
+    for (let h = 0; h < headerList.length; h++) {
+        let cell = row.insertCell(h);
+        cell.innerHTML = headerList[h];
+        cell.style.fontWeight = "900";
+        cell.style.backgroundColor = "green";
+        cell.style.color = "white";
+    }
+
     for (let i = 0; i < responseText.length; i++) {
         const tr = document.createElement("tr");
         const tdInvoiceId = document.createElement("td");
@@ -34,6 +49,9 @@ function onPurchaseResponse() {
 }
 
 function onDetailedPurchaseButtonClicked() {
+    showContents(["logout-content", "profile-content", "purchase2"])
+    const purchase2Div = document.getElementById("purchase2");
+    removeAllChildren(purchase2Div);
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onDetailedPurchaseResponse);
     xhr.addEventListener('error', onNetworkError);
@@ -45,6 +63,18 @@ function onDetailedPurchaseResponse() {
     const responseText = JSON.parse(this.responseText);
     const purchase2Div = document.getElementById("purchase2");
     const purchase2Table = document.createElement("table");
+
+    const header = purchase2Table.createTHead();
+    const row = header.insertRow(0);
+    const headerList = ["Invoice ID", "Artist Name", "Album Title", "Track Title", "Price", "Genre"]
+    for (let h = 0; h < headerList.length; h++) {
+        let cell = row.insertCell(h);
+        cell.innerHTML = headerList[h];
+        cell.style.fontWeight = "900";
+        cell.style.backgroundColor = "green";
+        cell.style.color = "white";
+    }
+
     for (let i = 0; i < responseText.length; i++) {
         const tr = document.createElement("tr");
         const tdInvoiceId = document.createElement("td");

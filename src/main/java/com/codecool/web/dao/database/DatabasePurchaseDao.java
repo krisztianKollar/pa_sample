@@ -72,7 +72,7 @@ public class DatabasePurchaseDao extends AbstractDao implements PurchaseDao {
         String artistName = resultSet.getString("artist");
         String albumTitle = resultSet.getString("title");
         String trackTitle = resultSet.getString("track_title");
-        int unitPrice = resultSet.getInt("unitprice");
+        float unitPrice = resultSet.getFloat("unitprice");
         String genre = resultSet.getString("genre");
         return new Purchase(invoiceId, artistName, albumTitle, trackTitle, unitPrice, genre);
     }
